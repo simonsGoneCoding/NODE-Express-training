@@ -7,10 +7,19 @@ app.listen(3000, "127.0.0.1", () => {
   console.log("Server is listening at: http://localhost:3000");
 });
 
-app.get("/", () => {
-  console.log("Welcome funny fella");
-});
+// app.all("/", req => {
+//   console.log("req.url", req.url);
+//   console.log("req.originalurl", req.originalUrl);
+//   console.log("req.path", req.path);
+// });
 
-app.get("/home", () => {
-  console.log("Welcome home funny fella");
+app.all("/", req => {
+  //   console.log("req.protocol", req.protocol);
+  //   console.log("req.secure", req.secure);
+  //   if (req.protocol !== "https") {
+  //     console.log("protocol not secure");
+  //   }
+  if (!req.secure) {
+    console.log("protocol not secure");
+  }
 });
