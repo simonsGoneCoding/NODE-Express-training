@@ -13,16 +13,20 @@ app.listen(3000, "127.0.0.1", () => {
 //   console.log("req.path", req.path);
 // });
 
-app.all("/", req => {
-  //   console.log("req.protocol", req.protocol);
-  //   console.log("req.secure", req.secure);
-  //   if (req.protocol !== "https") {
-  //     console.log("protocol not secure");
-  //   }
-  //   if (!req.secure) {
-  //     console.log("protocol not secure");
-  //   }
+// app.all("/", req => {
+//   console.log("req.protocol", req.protocol);
+//   console.log("req.secure", req.secure);
+//   if (req.protocol !== "https") {
+//     console.log("protocol not secure");
+//   }
+//   if (!req.secure) {
+//     console.log("protocol not secure");
+//   }
+// const { name, surname } = req.query;   // receiving parameters by backend
+// console.log(`Welcome ${name} sit down and relax`);
+// });
 
-  const { name, surname } = req.query;
-  console.log(`Welcome ${name} sit down and relax`);
+// req.get and referrer
+app.all("/", req => {
+  console.log(req.get("Referer"));
 });
