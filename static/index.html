@@ -14,7 +14,7 @@
       <button type="submit">Generade reference</button>
     </form>
 
-    <a href="#">lets see how it works</a>
+    <a href="">hoover to see reference</a>
 
     <script>
       const nameInput = document.querySelector("#nameInput");
@@ -26,11 +26,13 @@
         event.preventDefault();
         const name = nameInput.value;
         const surname = surnameInput.value;
+        // const url = `http://localhost:3000/?name=${encodeURIComponent(
+        //   name
+        // )}&surname=${encodeURIComponent(surname)}`;
 
         const params = new URLSearchParams({ name, surname });
 
-        const url = `http://localhost:3000/?` + params;
-
+        const url = `http://localhost:3000/?${params}`;
         a.setAttribute("href", url);
       });
     </script>

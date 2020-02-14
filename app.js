@@ -19,7 +19,10 @@ app.all("/", req => {
   //   if (req.protocol !== "https") {
   //     console.log("protocol not secure");
   //   }
-  if (!req.secure) {
-    console.log("protocol not secure");
-  }
+  //   if (!req.secure) {
+  //     console.log("protocol not secure");
+  //   }
+
+  const { name, surname } = req.query;
+  console.log(`Welcome ${name} sit down and relax`);
 });
