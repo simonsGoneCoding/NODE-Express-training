@@ -146,10 +146,33 @@ app.listen(3000, "127.0.0.1", () => {
 
 // ----                  ----
 // ---- res.download() ----
-app.get("/", (req, res) => {
-  const fileName = path.join(__dirname, "./static/logo.png");
+// app.get("/", (req, res) => {
+//   const fileName = path.join(__dirname, "./static/logo.png");
 
-  res.download(fileName, "name changed.png");
+//   res.download(fileName, "name changed.png");
+// });
+
+// ------ EX9. Working with headings ------
+// ----cookies
+
+app.get("/", (req, res) => {
+  res.send("Main page");
 });
 
-// ----                ----
+app.get("/hi/:name", (req, res) => {
+  const { name } = req.params;
+  const dt = new Date();
+  dt.setDate(dt.getDate() + 7);
+
+  res.cookie("visitor_name", name, {
+    // expires: dt     //   <-- expires in 7 days
+    maxAge: 5 * 60 * 1000
+  });
+  res.send(`Welcome ${name} sit down and relax.`);
+});
+
+app.get("/logout", (req, res) => {
+  res.clearCookie("visitor_name");
+  // res.send("By by baby by by");
+  res.redirect("/");
+});
