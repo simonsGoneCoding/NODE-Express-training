@@ -1,5 +1,6 @@
 const express = require("express");
 const path = require("path"); //node.js internal package
+const cookieParser = require("cookie-parser");
 //creating server
 const app = express();
 
@@ -155,24 +156,45 @@ app.listen(3000, "127.0.0.1", () => {
 // ------ EX9. Working with headings ------
 // ----cookies
 
+// app.get("/", (req, res) => {
+//   res.send("Main page");
+// });
+
+// app.get("/hi/:name", (req, res) => {
+//   const { name } = req.params;
+//   const dt = new Date();
+//   dt.setDate(dt.getDate() + 7);
+
+//   res.cookie("visitor_name", name, {
+//     // expires: dt     //   <-- expires in 7 days
+//     maxAge: 5 * 60 * 1000
+//   });
+//   res.send(`Welcome ${name} sit down and relax.`);
+// });
+
+// app.get("/logout", (req, res) => {
+//   res.clearCookie("visitor_name");
+//   // res.send("By by baby by by");
+//   res.redirect("/");
+// });
+
+// ------ EX10. Middleware ------
+
+// app.use(express.json());
+// app.post("/here", (req, res) => {
+//   const { name, surname } = req.body;
+//   res.send(`Welcome ${name} known as ${surname}`);
+// });
+
+// --------
+app.use(express.json());
+// app.use(express.static(path.join(__dirname, "static")));
+// -------
+
+// ---- cookie-parser ----
+app.use(cookieParser());
+
 app.get("/", (req, res) => {
+  console.log(req.cookies);
   res.send("Main page");
-});
-
-app.get("/hi/:name", (req, res) => {
-  const { name } = req.params;
-  const dt = new Date();
-  dt.setDate(dt.getDate() + 7);
-
-  res.cookie("visitor_name", name, {
-    // expires: dt     //   <-- expires in 7 days
-    maxAge: 5 * 60 * 1000
-  });
-  res.send(`Welcome ${name} sit down and relax.`);
-});
-
-app.get("/logout", (req, res) => {
-  res.clearCookie("visitor_name");
-  // res.send("By by baby by by");
-  res.redirect("/");
 });
