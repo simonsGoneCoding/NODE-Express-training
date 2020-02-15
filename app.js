@@ -1,4 +1,5 @@
 const express = require("express");
+const path = require("path"); //node.js internal package
 //creating server
 const app = express();
 
@@ -105,12 +106,50 @@ app.listen(3000, "127.0.0.1", () => {
 //   res.redirect("https://google.com");
 // });
 
+// app.get("/", (req, res) => {
+//   res.send('<a href="/go_back">BACK</a>');
+// });
+
+// app.get("/go_back", (req, res) => {
+//   // res.redirect("..");
+//   res.redirect("back");
+// });
+// // ----                 ----
+
+//EX8. ------ Sending files ------
+
+// ---- res.sendFile() ----
+// app.get("/", (req, res) => {
+//   const fileName = "index2.html";
+//   res.sendFile(fileName, {
+//     root: path.join(__dirname, "./static")
+//   });
+// });
+
+// app.get("/logo", (req, res) => {
+// const fileName = path.join(__dirname, "./static/logo.png");
+// res.sendFile(fileName);
+//   const fileName = "logo.png";
+//   res.sendFile(fileName, {
+//     root: path.join(__dirname, "./static")
+//   });
+// });
+
+// ---- res.attachment() ----
+// app.get("/", (req, res) => {
+//   const fileName = "logo.png";
+//   res.attachment(fileName, {
+//     root: path.join(__dirname, "./static")
+//   });
+//   res.end();
+// });
+
+// ----                  ----
+// ---- res.download() ----
 app.get("/", (req, res) => {
-  res.send('<a href="/go_back">BACK</a>');
+  const fileName = path.join(__dirname, "./static/logo.png");
+
+  res.download(fileName, "name changed.png");
 });
 
-app.get("/go_back", (req, res) => {
-  // res.redirect("..");
-  res.redirect("back");
-});
-// ----                 ----
+// ----                ----
